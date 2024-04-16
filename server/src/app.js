@@ -5,8 +5,7 @@ const cookieParser = require("cookie-parser")
 const app = express()
 
 app.use(cors({
-    // origin: [process.env.CORS_ORIGIN, process.env.CLOUDINARY_URL],
-    origin: true,
+    origin: "https://spotify-nine-tawny.vercel.app",
     credentials: true
 }))
 app.use(express.json())
