@@ -2,5 +2,5 @@
     "version": 2,
     "name": "spotify",
     "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-    "routes": [{ "src": "/(.*)", "dest": "/index.js" }]
+    "routes": [{ "src": "/(.*)", "dest": "/index.js"}]
   }
