@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "aud-io",
+    "name": "spotify",
     "builds": [{ "src": "server.js", "use": "@vercel/node" }],
     "routes": [{ "src": "/(.*)", "dest": "/index.js" }]
   }
