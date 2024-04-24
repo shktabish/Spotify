@@ -1,6 +1,6 @@
 const User = require('../models/user.model')
 const jwt = require("jsonwebtoken")
-const uploadOnCloudinary = require("../utils/cloudinary")
+const run = require("../utils/cloudinary")
 
 const generateAccessAndRefreshToken = async (userId) => {
     try {
@@ -44,7 +44,7 @@ const registerUser = async (req, res) => {
             return res.status(401).json({ error: "Avatar is a required field" })
         }
 
-        const response = await uploadOnCloudinary(avatarLocalPath)
+        const response = await run(avatarLocalPath)
 
         if (!response || !response.secure_url) {
             return res.status(401).json({ error: "Avatar upload failed or no secure URL returned" })
