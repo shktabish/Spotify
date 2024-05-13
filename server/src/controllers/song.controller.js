@@ -59,7 +59,6 @@ const uploadSongs = async (req, res) => {
 const getAllSongs = async (req, res) => {
     try {
         const songs = await Song.find({})
-        console.log(songs)
         return res.status(200).json(songs)
     } catch (error) {
         console.log(error)

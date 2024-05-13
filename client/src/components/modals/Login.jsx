@@ -1,10 +1,39 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AiFillGithub } from "react-icons/ai"
 import { IoClose } from "react-icons/io5"
-import api from "../utils/axios"
+import api from "../../utils/axios"
 import toast from "react-hot-toast"
 
+function getCookie(name) {
+    // Split cookies into individual name-value pairs
+    var cookies = document.cookie.split(';');
+    
+    // Iterate over each cookie
+    for(var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        
+        // Check if this cookie is the one we're looking for
+        if(cookie.indexOf(name + '=') === 0) {
+            // If found, return the value of the cookie
+            return cookie.substring(name.length + 1);
+        }
+    }
+    
+    // If the cookie is not found, return null
+    return null;
+}
+
 const Login = ({ isLoginOpen, setIsLoginOpen,setIsLoggedIn }) => {
+    useEffect(() => {
+        const token = getCookie('accessToken')
+        console.log(token)
+        if(token) {
+            setIsLoggedIn(true)
+        } else {
+            setIsLoggedIn(false)
+        }
+    }, [])
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 

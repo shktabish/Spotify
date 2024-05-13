@@ -23,7 +23,6 @@ const Navbar = ({ setIsSignupOpen, setIsLoginOpen, isLoggedIn, setIsLoggedIn }) 
             onClick={handleLogOut}
           >Log out</div>
           <div className="w-14 h-14 rounded-full bg-white/50"></div>
-          <div></div>
         </> : 
         <>
           <div 

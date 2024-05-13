@@ -4,7 +4,6 @@ const verifyJWT = require("../middlewares/auth.middleware")
 const { uploadSongs, getAllSongs } = require("../controllers/song.controller")
 
 const router = express.Router()
-router.use(verifyJWT)
 
 router.route("/")
 .post(upload.fields([
@@ -16,7 +15,7 @@ router.route("/")
         name: "coverImage",
         maxCount: 1
     }
-]), uploadSongs)
+]), verifyJWT, uploadSongs)
 .get(getAllSongs)
 
 module.exports = router

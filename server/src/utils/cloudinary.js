@@ -10,7 +10,7 @@ cloudinary.config({
 async function run(avatarLocalPath) {
   try {
     const result = await cloudinary.uploader.upload(avatarLocalPath, { resource_type: 'auto'});
-    console.log(`Successfully uploaded video`);
+    console.log(`Successfully uploaded `);
     console.log(`> Result: ${result.secure_url}`);
     fs.unlinkSync(avatarLocalPath);
     return result

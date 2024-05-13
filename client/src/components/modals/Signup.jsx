@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { AiFillGithub } from "react-icons/ai"
 import { IoClose } from "react-icons/io5"
-import api from "../utils/axios"
+import api from "../../utils/axios"
 import toast from "react-hot-toast"
 
 
