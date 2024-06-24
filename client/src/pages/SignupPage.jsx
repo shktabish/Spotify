@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link, Navigate } from 'react-router-dom';
+import api from './../utils/axios';
 
 const SignupPage = () => {
     const [formData, setFormData] = useState({
@@ -8,9 +10,16 @@ const SignupPage = () => {
         avatar: null
     })
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
+        try {
+            console.log(formData.avatar)
+            const res = await api.post('/user/register', formData)
+            console.log(res.data)
+            Navigate('/login')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handleFileChange = (e) => {
@@ -67,7 +76,7 @@ const SignupPage = () => {
                     </form>
                 </div>
                 <div className='self-start'>Already have an account?&#x2800;
-                    <span className='text-[#0BDA92] hover:underline cursor-pointer'>Login</span>
+                    <Link to="/login" className='text-[#0BDA92] hover:underline cursor-pointer'>Login</Link>
                 </div>
             </div>
         </div>

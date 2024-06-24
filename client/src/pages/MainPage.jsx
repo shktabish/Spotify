@@ -9,7 +9,7 @@ import AudioPlayer from './../components/AudioPlayer';
 const MainPage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isUploadOpen, setIsUploadOpen] = useState(false)
-    const [songPlaying, setSongPlaying] = useState({})
+    const [songPlaying, setSongPlaying] = useState(null)
 
     useEffect(() => {
       console.log(songPlaying, "songPlaying")
@@ -22,7 +22,7 @@ const MainPage = () => {
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
         <MainSection isLoggedIn={isLoggedIn} setIsUploadOpen={setIsUploadOpen} setSongPlaying={setSongPlaying}/>
       </div> 
-      <AudioPlayer song={songPlaying}/>
+      {songPlaying && <AudioPlayer song={songPlaying}/>}
       <Upload isUploadOpen={isUploadOpen} setIsUploadOpen={setIsUploadOpen}/>
     </div>
   )

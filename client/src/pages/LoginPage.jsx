@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const LoginPage = () => {
                 </form>
             </div>
             <div className='self-start'>Don't have an account?&#x2800;
-                <span className='text-[#0BDA92] hover:underline cursor-pointer'>Sign Up</span>
+                <Link to="/signup" className='text-[#0BDA92] hover:underline cursor-pointer'>Sign Up</Link>
             </div>
         </div>
     </div>
