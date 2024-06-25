@@ -1,15 +1,30 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import api from '../utils/axios'
+import { useUser } from '../Contexts/UserContext'
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     })
+    const navigate = useNavigate()
+    const { setUser } = useUser()   
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
+        try {
+            const res = await api.post('/user/login', formData)
+            setFormData({
+                email: '',
+                password: ''
+            }) 
+            setUser(res.data.user)
+            console.log(res.data.user)
+            navigate('/')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
   return (

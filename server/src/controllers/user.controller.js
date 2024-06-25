@@ -36,9 +36,12 @@ const registerUser = async (req, res) => {
         }
 
         let avatarLocalPath;
+        console.log("Files: ", req.files)
         if (req.files && Array.isArray(req.files.avatar) && req.files.avatar.length > 0) {
             avatarLocalPath = req.files.avatar[0].path
         }
+
+        console.log("Avatar local path: ", avatarLocalPath)
 
         if(!avatarLocalPath) {
             return res.status(401).json({ error: "Avatar is a required field" })

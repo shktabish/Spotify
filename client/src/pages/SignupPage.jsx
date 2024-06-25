@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from './../utils/axios';
 
 const SignupPage = () => {
@@ -9,14 +9,28 @@ const SignupPage = () => {
         password: '',
         avatar: null
     })
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        const form = new FormData()
+        form.append('name', formData.name)
+        form.append('email', formData.email)
+        form.append('password', formData.password)
+        form.append('avatar', formData.avatar)
+
         try {
-            console.log(formData.avatar)
-            const res = await api.post('/user/register', formData)
-            console.log(res.data)
-            Navigate('/login')
+            const res = await api.post('/user/register', form)
+
+            setFormData({
+                name: '',
+                email: '',
+                password: '',
+                avatar: null
+            })
+            
+            navigate('/login')
         } catch (error) {
             console.log(error)
         }
