@@ -48,7 +48,7 @@ const uploadSongs = async (req, res) => {
             return res.status(500).json({error: "There was an error while storing the song to DB"})
         }
 
-        return res.status(200).json({message: "Song uplaoded successfully"})
+        return res.status(200).json({message: "Song uplaoded successfully", song: songUploaded})
 
     } catch (error) {
         console.log(error)

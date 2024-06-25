@@ -6,7 +6,7 @@ const MusicCard = ({ song, setSongPlaying, audioRef }) => {
 
   const handleClick = () => {
     setSongPlaying(song)
-    audioRef.current.play()
+    // audioRef.current.play()
   }
 
   return (

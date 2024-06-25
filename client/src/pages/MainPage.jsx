@@ -8,6 +8,7 @@ import AudioPlayer from './../components/AudioPlayer';
 const MainPage = () => {
     const [songPlaying, setSongPlaying] = useState(null)
     const [isUploadOpen, setIsUploadOpen] = useState(false)
+    const [songs, setSongs] = useState([{}])
     const audioRef = useRef(null)
 
   return (
@@ -15,10 +16,10 @@ const MainPage = () => {
       <Sidebar setIsUploadOpen={setIsUploadOpen} />
       <div className="bg-gradient-to-b from-[#1e1e1e] to-black w-full sm:w-[calc(100%-256px)] sm:ml-2 rounded-xl">
         <Navbar />
-        <MainSection setSongPlaying={setSongPlaying} audioRef={audioRef}/>
+        <MainSection setSongPlaying={setSongPlaying} audioRef={audioRef} songs={songs} setSongs={setSongs}/>
       </div> 
       {songPlaying && <AudioPlayer song={songPlaying} audioRef={audioRef}/>}
-      <Upload isUploadOpen={isUploadOpen} setIsUploadOpen={setIsUploadOpen} />
+      <Upload isUploadOpen={isUploadOpen} setIsUploadOpen={setIsUploadOpen} setSongs={setSongs} />
     </div>
   )
 }

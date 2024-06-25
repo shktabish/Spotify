@@ -10,8 +10,11 @@ const AudioPlayer = ({ song, audioRef }) => {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(1)
+  const [showVolume, setShowVolume] = useState(false)
 
   useEffect(() => {
+    setCurrentTime(0)
+
     const audio = audioRef.current
     const updateTime = () => {
       setCurrentTime(audio.currentTime)
@@ -21,10 +24,14 @@ const AudioPlayer = ({ song, audioRef }) => {
       setDuration(audio.duration)
     })
 
+    if(song) {
+      playAudio()
+    }
+
     return () => {
       audio.removeEventListener('timeupdate', updateTime)
     }
-  }, [])
+  }, [song])
 
   const playAudio = () => {
     audioRef.current.play()
@@ -83,15 +90,19 @@ const AudioPlayer = ({ song, audioRef }) => {
         <BiSkipNext fill="#b3b3b3" className='text-4xl hidden sm:block'/>
       </div>
 
-      {/* <input
-        type="range"
-        min="0"
-        max="100"
-        value={volume * 100}
-        onChange={handleVolumeChange}
-        className="w-24"
-      /> */}
-      <FaVolumeUp fill="#b3b3b3" className='text-2xl mr-6 hidden sm:block'/>
+      <div className='relative'>
+        <FaVolumeUp fill="#b3b3b3" className='text-2xl mr-6 hidden sm:block cursor-pointer' onClick={() => setShowVolume(!showVolume)}/>
+        {showVolume &&
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={volume * 100}
+            onChange={handleVolumeChange}
+            className="w-24 absolute z-50 -rotate-90 -top-3 left-3 origin-left accent-[#0EDD95] h-[7px]"
+          />
+        }
+      </div>
     </div>
   )
 }

@@ -49,7 +49,7 @@ const SignupPage = () => {
                 <div className="absolute inset-0 bg-black opacity-60"></div>
             </div>
             <div className="bg-[url('/login-pattern.png')] bg-cover bg-center text-white p-4 flex flex-col items-center">
-                <img src="/spotify-logo.svg" alt="spotify-logo" className="h-10 self-start"/>
+                <Link to="/" className='self-start'><img src="/spotify-logo.svg" alt="spotify-logo" className="h-10"/></Link>
                 <div className='flex flex-col justify-center gap-5 h-[calc(100vh-80px-32px)] min-w-[288px] w-4/5'>
                     <div className="text-6xl font-semibold">Create Account</div>
                     <p className="text-[#0BDA92]">Please fill in the details below</p>

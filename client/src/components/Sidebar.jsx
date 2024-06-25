@@ -18,7 +18,7 @@ const Sidebar = ({ setIsUploadOpen }) => {
 
   return (
     <div className="h-[calc(100vh-16px)] w-64 flex flex-col gap-2 max-sm:hidden sticky top-2">
-      <div className="w-full bg-[#121212] h-1/4 rounded-xl px-4 py-2 flex flex-col gap-2 justify-around">
+      <div className="w-full bg-[#121212] h-max rounded-xl px-4 py-2 flex flex-col gap-4 justify-around">
         <img src="/spotify-logo.svg" alt="Spotify logo" className="h-8 ml-2 self-start" />
         <div className="flex items-center">
           <GoHomeFill className="fill-white text-3xl mr-4 ml-2" />
@@ -29,7 +29,7 @@ const Sidebar = ({ setIsUploadOpen }) => {
           <span className="text-[#b3b3b3] text-l font-semibold">Upload Songs</span>
         </div>
       </div>
-      <div className="w-full bg-[#121212] h-3/4 py-2 px-4 rounded-xl flex flex-col gap-4">
+      <div className="w-full bg-[#121212] grow py-2 px-4 rounded-xl flex flex-col gap-4">
         <div className="flex justify-start items-center gap-4 p-2">
           <BiLibrary className="fill-[#b3b3b3] text-3xl" />
           <div className="text-[#b3b3b3] text-l font-semibold mr-auto">Your Library</div>

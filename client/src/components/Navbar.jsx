@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import api from "../utils/axios"
 import { useUser } from "../Contexts/UserContext"
 
 const Navbar = () => {
   const { user, setUser } = useUser()
+  const navigate = useNavigate()
 
   const handleLogOut = async () => {
     try {
       const res = await api.post('/user/logout')
       setUser(null)
+      navigate('/login')
     } catch (error) {
       console.log(error)
     }

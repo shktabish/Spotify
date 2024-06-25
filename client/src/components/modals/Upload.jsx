@@ -1,14 +1,12 @@
 import { useState } from "react"
 import { IoClose } from "react-icons/io5"
 import api from "../../utils/axios"
-import { useUser } from "../../Contexts/UserContext"
 
-const Upload = ({ isUploadOpen, setIsUploadOpen }) => {
+const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
     const [artist, setArtist] = useState('')
     const [title, setTitle] = useState('')
     const [songUpload, setSongUpload] = useState(null)
     const [imageUpload, setImageUpload] = useState(null)
-    const { user } = useUser()
 
     const uploadFiles = async () => {
         const formData = new FormData()
@@ -25,8 +23,7 @@ const Upload = ({ isUploadOpen, setIsUploadOpen }) => {
             setTitle('')
             setSongUpload(null)
             setImageUpload(null)
-
-            console.log(res.data)
+            setSongs((prev) => [...prev, res.data.song])
         } catch (error) {
             console.log(error)
         }
