@@ -4,7 +4,7 @@ import { BiLibrary } from "react-icons/bi"
 import { HiOutlinePlusSmall } from "react-icons/hi2"
 import { IoMdCloudUpload } from "react-icons/io"
 import { useUser } from "../Contexts/UserContext"
-import { toast } from "sonner"
+import { toast } from "react-hot-toast"
 
 const Sidebar = ({ setIsUploadOpen }) => {
   const { user } = useUser()

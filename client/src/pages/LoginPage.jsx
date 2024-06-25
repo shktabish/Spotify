@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../utils/axios'
 import { useUser } from '../Contexts/UserContext'
-import { toast } from 'sonner';
+import { toast } from 'react-hot-toast';
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({

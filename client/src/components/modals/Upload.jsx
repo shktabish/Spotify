@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { IoClose } from "react-icons/io5"
 import api from "../../utils/axios"
-import { toast } from "sonner"
+import { toast } from "react-hot-toast"
 
 const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
     const [artist, setArtist] = useState('')
