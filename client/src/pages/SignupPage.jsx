@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import api from './../utils/axios';
+import { toast } from 'sonner';
 
 const SignupPage = () => {
     const [formData, setFormData] = useState({
@@ -29,10 +30,11 @@ const SignupPage = () => {
                 password: '',
                 avatar: null
             })
-            
+
+            toast.success(res.data.message)
             navigate('/login')
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.error)
         }
     }
 

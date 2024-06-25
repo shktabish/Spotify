@@ -22,7 +22,7 @@ const registerUser = async (req, res) => {
         const { name, email, password } = req.body
     
         if(!(name && email)) {
-            return res.status(400).json({ error: "Name and email is required" })
+            return res.status(400).json({ error: "Name and Email is a required field" })
         }
     
         if(!password || password.length < 6) {
@@ -83,7 +83,7 @@ const loginUser = async (req, res) => {
         const { email, password } = req.body
 
         if(!(email && password)) {
-            return res.status(400).json({error: "Email and password cannot be empty"})
+            return res.status(400).json({error: "Email and Password cannot be empty"})
         }
     
         const user = await User.findOne({ email })

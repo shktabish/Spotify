@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IoPauseSharp } from 'react-icons/io5'
 import { IoMdPlay } from "react-icons/io"
 import { BiSkipNext } from "react-icons/bi"

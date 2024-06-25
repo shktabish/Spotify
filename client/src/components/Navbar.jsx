@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import api from "../utils/axios"
 import { useUser } from "../Contexts/UserContext"
+import { toast } from "sonner"
 
 const Navbar = () => {
   const { user, setUser } = useUser()
@@ -10,6 +11,7 @@ const Navbar = () => {
     try {
       const res = await api.post('/user/logout')
       setUser(null)
+      toast.success(res.data.message)
       navigate('/login')
     } catch (error) {
       console.log(error)

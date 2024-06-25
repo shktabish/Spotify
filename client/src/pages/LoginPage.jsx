@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../utils/axios'
 import { useUser } from '../Contexts/UserContext'
+import { toast } from 'sonner';
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -20,10 +21,10 @@ const LoginPage = () => {
                 password: ''
             }) 
             setUser(res.data.user)
-            console.log(res.data.user)
+            toast.success(res.data.message)
             navigate('/')
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.error)
         }
     }
 

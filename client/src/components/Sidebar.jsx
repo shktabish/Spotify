@@ -4,13 +4,14 @@ import { BiLibrary } from "react-icons/bi"
 import { HiOutlinePlusSmall } from "react-icons/hi2"
 import { IoMdCloudUpload } from "react-icons/io"
 import { useUser } from "../Contexts/UserContext"
+import { toast } from "sonner"
 
 const Sidebar = ({ setIsUploadOpen }) => {
   const { user } = useUser()
   
   const handleClick = () => {
     if(!user) {
-      alert("You need to be logged in to upload songs")
+      toast.error('Please login to upload songs')
       return
     }
     setIsUploadOpen(true)
@@ -36,7 +37,7 @@ const Sidebar = ({ setIsUploadOpen }) => {
           <HiOutlinePlusSmall className="text-[#b3b3b3] text-3xl" />
         </div>
         <CiSearch className="fill-white text-2xl mr-4 ml-2" />
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <div className="h-14 w-14 rounded-full bg-slate-50"></div>
           <div className="text-white">Playlist Name</div>
         </div>
@@ -47,7 +48,8 @@ const Sidebar = ({ setIsUploadOpen }) => {
         <div className="flex items-center gap-4">
           <div className="h-14 w-14 rounded-full bg-slate-50"></div>
           <div className="text-white">Playlist Name</div>
-        </div>
+        </div> */}
+        <div className="text-white">Coming Soon...</div>
       </div>
     </div>
   )

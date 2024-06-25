@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { IoClose } from "react-icons/io5"
 import api from "../../utils/axios"
+import { toast } from "sonner"
 
 const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
     const [artist, setArtist] = useState('')
@@ -8,7 +9,9 @@ const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
     const [songUpload, setSongUpload] = useState(null)
     const [imageUpload, setImageUpload] = useState(null)
 
-    const uploadFiles = async () => {
+    const uploadFiles = async (e) => {
+        e.preventDefault()
+
         const formData = new FormData()
 
         formData.append("artist", artist)
@@ -17,6 +20,8 @@ const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
         formData.append("coverImage", imageUpload)
 
         try {
+            toast.loading('Uploading song...')
+
             const res = await api.post('/song/', formData)
 
             setArtist('')
@@ -24,18 +29,12 @@ const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
             setSongUpload(null)
             setImageUpload(null)
             setSongs((prev) => [...prev, res.data.song])
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            await uploadFiles()
+            toast.dismiss()
+            toast.success(res.data.message)
             setIsUploadOpen(false)
         } catch (error) {
-            console.log(error)
+            toast.error(error.response.data.error)
         }
     }
  
@@ -43,7 +42,7 @@ const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
         <div className={`h-full w-full bg-black/75 fixed flex justify-center items-center ${isUploadOpen? "block" : "hidden"}`}>
             <div className="bg-[#232123] w-[405px] max-sm:w-[335px] flex flex-col items-center gap-2 px-3 py-4 rounded-md relative">
                 <p className="text-2xl font-semibold text-white ">Upload any song</p>
-                <form onSubmit={handleSubmit} className="flex flex-col border-t-[1px] border-[#363436] mt-4 pt-4">
+                <form onSubmit={uploadFiles} className="flex flex-col border-t-[1px] border-[#363436] mt-4 pt-4">
                     <label className="text-white my-4">
                         <input type="file" className="hidden" onChange={(e) => setSongUpload(e.target.files[0])}/>
                         {songUpload ? (

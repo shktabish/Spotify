@@ -10,7 +10,6 @@ export default function App() {
 
 
   return (
-
     <UserProvider>
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
