@@ -5,8 +5,9 @@ import { HiOutlinePlusSmall } from "react-icons/hi2"
 import { IoMdCloudUpload } from "react-icons/io"
 import { useUser } from "../Contexts/UserContext"
 import { toast } from "react-hot-toast"
+import { IoMdClose } from "react-icons/io"
 
-const Sidebar = ({ setIsUploadOpen }) => {
+const Sidebar = ({ setIsUploadOpen,setShowSidebar, showSidebar }) => {
   const { user } = useUser()
   
   const handleClick = () => {
@@ -14,13 +15,17 @@ const Sidebar = ({ setIsUploadOpen }) => {
       toast.error('Please login to upload songs')
       return
     }
+    setShowSidebar(false)
     setIsUploadOpen(true)
   }
 
   return (
-    <div className="h-[calc(100vh-16px)] w-64 flex flex-col gap-2 max-sm:hidden sticky top-2">
+    <div className={`h-[calc(100vh-16px)] w-64 flex flex-col gap-2 ${showSidebar ? "max-sm:w-screen" : "max-sm:hidden"} sticky top-2`}>
       <div className="w-full bg-[#121212] h-max rounded-xl px-4 py-2 flex flex-col gap-4 justify-around">
-        <img src="/spotify-logo.svg" alt="Spotify logo" className="h-8 ml-2 self-start" />
+        <div className="max-sm:flex max-sm:justify-between max-sm:items-center">
+          <img src="/spotify-logo.svg" alt="Spotify logo" className="h-8 ml-2 self-start" />
+          <IoMdClose fill="#b3b3b3" size={30} className="sm:hidden block" onClick={() => setShowSidebar(false)}/>
+        </div>
         <div className="flex items-center">
           <GoHomeFill className="fill-white text-3xl mr-4 ml-2" />
           <span className="text-white text-l font-semibold">Home</span>
