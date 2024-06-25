@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../utils/axios'
 import { useUser } from '../Contexts/UserContext'
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ const LoginPage = () => {
         <div className="bg-[url('/login-pattern.png')] bg-cover bg-center text-white p-4 flex flex-col items-center">
             <Link to="/" className='self-start'><img src="/spotify-logo.svg" alt="spotify-logo" className="h-10"/></Link>
             <div className='flex flex-col justify-center gap-5 h-[calc(100vh-80px-32px)] min-w-[288px] w-4/5'>
-                <div className="text-6xl font-semibold">Welcome Back</div>
+                <div className="font-semibold text-4xl md:text-[2.7rem] lg:text-[3.60rem]">Welcome Back</div>
                 <p className="text-[#0BDA92]">Please enter your login details below</p>
                 <form onSubmit={handleSubmit}>
                     <input 

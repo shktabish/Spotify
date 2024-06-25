@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { IoClose } from "react-icons/io5"
 import api from "../../utils/axios"
-import { toast } from "react-hot-toast"
+import { toast } from "sonner"
 
 const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
     const [artist, setArtist] = useState('')
@@ -34,6 +34,7 @@ const Upload = ({ isUploadOpen, setIsUploadOpen, setSongs }) => {
             toast.success(res.data.message)
             setIsUploadOpen(false)
         } catch (error) {
+            toast.dismiss()
             toast.error(error.response.data.error)
         }
     }
