@@ -5,12 +5,16 @@ import { BiSkipNext } from "react-icons/bi"
 import { BiSkipPrevious } from "react-icons/bi"
 import { FaVolumeUp } from "react-icons/fa"
 
-const AudioPlayer = ({ song, audioRef }) => {
+const AudioPlayer = ({ song, audioRef, songIndex, setSongIndex, songList, setSong }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(1)
   const [showVolume, setShowVolume] = useState(false)
+
+  useEffect(() => {
+    setSong(songList[songIndex])
+  }, [songIndex])
 
   useEffect(() => {
     setCurrentTime(0)
@@ -55,6 +59,22 @@ const AudioPlayer = ({ song, audioRef }) => {
     setVolume(newVolume)
   }
 
+  const playNextSong = () => {
+    if(songIndex === songList.length - 1) {
+      setSongIndex(0)
+    } else {
+      setSongIndex(songIndex + 1)
+    }
+  }
+
+  const playPrevSong = () => {  
+    if(songIndex === 0) {
+      setSongIndex(songList.length - 1)
+    } else {
+      setSongIndex(songIndex - 1)
+    }
+  }
+
   return (
     <div key={song._id} className="bg-black fixed bottom-0 h-[10vh] w-full flex justify-between items-center">
       <audio src={song.song} ref={audioRef} className="hidden" />
@@ -68,16 +88,16 @@ const AudioPlayer = ({ song, audioRef }) => {
         className="h-[3px] w-full accent-[#0EDD95] fixed bottom-[10vh] z-10"
       />
 
-      <div className='flex ml-4 sm:w-max max-sm:grow overflow-hidden'>
-        <img src={song.coverImage} alt="song cover" className="h-[8vh] mr-4" />
-        <div className="flex flex-col justify-center mr-4">
+      <div className='flex ml-4 sm:w-max max-sm:grow overflow-hidden sm:overflow-visible'>
+        <img src={song.coverImage} alt="song cover" className="h-[8vh] aspect-square mr-4" />
+        <div className="flex flex-col justify-center mr-4 sm:w-28">
           <div className="text-white text-nowrap sm:text-base text-sm">{song.title}</div>
           <div className="text-[#b3b3b3] text-nowrap sm:text-base text-sm">By {song.artist}</div>
         </div>
       </div>
 
       <div className='flex items-center justify-end sm:justify-center mr-5 sm:mr-[12vw] grow gap-2'>
-        <BiSkipPrevious fill="#b3b3b3" className='text-4xl hidden sm:block'/>
+        <BiSkipPrevious fill="#b3b3b3" className='text-4xl hidden sm:block' onClick={playPrevSong} />
         { isPlaying ?
           <div className='grid place-content-center h-[6vh] w-[6vh] rounded-full bg-[#0EDD95] cursor-pointer' onClick={pauseAudio}>
             <IoPauseSharp fill="black" size={24}/>
@@ -87,7 +107,7 @@ const AudioPlayer = ({ song, audioRef }) => {
             <IoMdPlay fill="black" size={24} className='ml-[2px]'/>
           </div>
         }
-        <BiSkipNext fill="#b3b3b3" className='text-4xl hidden sm:block'/>
+        <BiSkipNext fill="#b3b3b3" className='text-4xl hidden sm:block' onClick={playNextSong}/>
       </div>
 
       <div className='relative'>

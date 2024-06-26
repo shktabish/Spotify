@@ -3,7 +3,7 @@ import MusicCard from "./MusicCard"
 import api from "../utils/axios"
 import LoadingMusicCard from "./loading/LoadingMusicCard"
 
-const MainSection = ({ setSongPlaying, audioRef, setSongs, songs }) => {
+const MainSection = ({ setSongPlaying, setSongs, songs, setSongIndex }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const MainSection = ({ setSongPlaying, audioRef, setSongs, songs }) => {
   }, [])
 
   const musicCardList = songs.map((song, i) => (
-    <MusicCard key={i} song={song} setSongPlaying={setSongPlaying} audioRef={audioRef} />
+    <MusicCard key={i} index={i} song={song} setSongPlaying={setSongPlaying} setSongIndex={setSongIndex} />
   ))
 
   return (

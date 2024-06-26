@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { IoPlaySharp } from "react-icons/io5"
 
-const MusicCard = ({ song, setSongPlaying, audioRef }) => {
+const MusicCard = ({ song, setSongPlaying, index, setSongIndex }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
     setSongPlaying(song)
-    // audioRef.current.play()
+    setSongIndex(index)
   }
 
   return (

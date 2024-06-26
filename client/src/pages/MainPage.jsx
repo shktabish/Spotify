@@ -10,6 +10,7 @@ const MainPage = () => {
     const [isUploadOpen, setIsUploadOpen] = useState(false)
     const [songs, setSongs] = useState([{}])
     const [showSidebar, setShowSidebar] = useState(false)
+    const [songIndex, setSongIndex] = useState(null)
     const audioRef = useRef(null)
 
   return (
@@ -17,9 +18,9 @@ const MainPage = () => {
       <Sidebar setIsUploadOpen={setIsUploadOpen} setShowSidebar={setShowSidebar} showSidebar={showSidebar}/>
       <div className={`${showSidebar ? "max-sm:hidden" : ""} bg-gradient-to-b from-[#1e1e1e] to-black w-full sm:w-[calc(100%-256px)] sm:ml-2 rounded-xl`}>
         <Navbar setShowSidebar={setShowSidebar}/>
-        <MainSection setSongPlaying={setSongPlaying} audioRef={audioRef} songs={songs} setSongs={setSongs}/>
+        <MainSection setSongPlaying={setSongPlaying} songs={songs} setSongs={setSongs} setSongIndex={setSongIndex}/>
       </div> 
-      {songPlaying && <AudioPlayer song={songPlaying} audioRef={audioRef}/>}
+      {songPlaying && <AudioPlayer songList={songs} song={songPlaying} setSong={setSongPlaying} audioRef={audioRef} songIndex={songIndex} setSongIndex={setSongIndex} />}
       <Upload isUploadOpen={isUploadOpen} setIsUploadOpen={setIsUploadOpen} setSongs={setSongs}/>
     </div>
   )
