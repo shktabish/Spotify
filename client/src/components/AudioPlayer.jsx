@@ -37,6 +37,11 @@ const AudioPlayer = ({ song, audioRef, songIndex, setSongIndex, songList, setSon
     }
   }, [song])
 
+  useEffect(() => {
+    const audio = audioRef.current
+    audio.volume = volume
+  }, [song, volume])
+
   const playAudio = () => {
     audioRef.current.play()
     setIsPlaying(true)
