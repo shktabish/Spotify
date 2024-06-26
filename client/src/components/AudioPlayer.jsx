@@ -93,16 +93,16 @@ const AudioPlayer = ({ song, audioRef, songIndex, setSongIndex, songList, setSon
         className="h-[3px] w-full accent-[#0EDD95] fixed bottom-[10vh] z-10"
       />
 
-      <div className='flex ml-4 sm:w-max max-sm:grow overflow-hidden sm:overflow-visible'>
-        <img src={song.coverImage} alt="song cover" className="h-[8vh] aspect-square mr-4" />
-        <div className="flex flex-col justify-center mr-4 sm:w-28">
+      <div className='flex gap-2 max-sm:ml-2 ml-4 sm:w-max max-sm:grow overflow-hidden sm:overflow-visible'>
+        <img src={song.coverImage} alt="song cover" className="h-[8vh] aspect-square" />
+        <div className="flex flex-col justify-center sm:w-28">
           <div className="text-white text-nowrap sm:text-base text-sm">{song.title}</div>
           <div className="text-[#b3b3b3] text-nowrap sm:text-base text-sm">By {song.artist}</div>
         </div>
       </div>
 
-      <div className='flex items-center justify-end sm:justify-center mr-5 sm:mr-[12vw] grow gap-2'>
-        <BiSkipPrevious fill="#b3b3b3" className='text-4xl hidden sm:block cursor-pointer' onClick={playPrevSong} />
+      <div className='flex items-center justify-end sm:justify-center mr-5 sm:mr-[12vw] grow gap-1 sm:gap-2'>
+        <BiSkipPrevious fill="#b3b3b3" className='text-3xl sm:text-4xl block cursor-pointer' onClick={playPrevSong} />
         { isPlaying ?
           <div className='grid place-content-center h-[6vh] w-[6vh] rounded-full bg-[#0EDD95] cursor-pointer' onClick={pauseAudio}>
             <IoPauseSharp fill="black" size={24}/>
@@ -112,7 +112,7 @@ const AudioPlayer = ({ song, audioRef, songIndex, setSongIndex, songList, setSon
             <IoMdPlay fill="black" size={24} className='ml-[2px]'/>
           </div>
         }
-        <BiSkipNext fill="#b3b3b3" className='text-4xl hidden sm:block cursor-pointer' onClick={playNextSong}/>
+        <BiSkipNext fill="#b3b3b3" className='text-3xl sm:text-4xl block cursor-pointer' onClick={playNextSong}/>
       </div>
 
       <div className='relative'>
