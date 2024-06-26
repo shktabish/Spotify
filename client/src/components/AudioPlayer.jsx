@@ -102,7 +102,7 @@ const AudioPlayer = ({ song, audioRef, songIndex, setSongIndex, songList, setSon
       </div>
 
       <div className='flex items-center justify-end sm:justify-center mr-5 sm:mr-[12vw] grow gap-2'>
-        <BiSkipPrevious fill="#b3b3b3" className='text-4xl hidden sm:block' onClick={playPrevSong} />
+        <BiSkipPrevious fill="#b3b3b3" className='text-4xl hidden sm:block cursor-pointer' onClick={playPrevSong} />
         { isPlaying ?
           <div className='grid place-content-center h-[6vh] w-[6vh] rounded-full bg-[#0EDD95] cursor-pointer' onClick={pauseAudio}>
             <IoPauseSharp fill="black" size={24}/>
@@ -112,7 +112,7 @@ const AudioPlayer = ({ song, audioRef, songIndex, setSongIndex, songList, setSon
             <IoMdPlay fill="black" size={24} className='ml-[2px]'/>
           </div>
         }
-        <BiSkipNext fill="#b3b3b3" className='text-4xl hidden sm:block' onClick={playNextSong}/>
+        <BiSkipNext fill="#b3b3b3" className='text-4xl hidden sm:block cursor-pointer' onClick={playNextSong}/>
       </div>
 
       <div className='relative'>
