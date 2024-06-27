@@ -105,8 +105,7 @@ const loginUser = async (req, res) => {
         const options = {
             httpOnly: true, 
             secure: true,   
-            sameSite: 'None',
-            domain: 'https://spotify-nine-tawny.vercel.app'        
+            sameSite: 'None'        
         }
 
         return res
@@ -142,8 +141,7 @@ const logoutUser = async (req, res) => {
         const options = {
             httpOnly: true, 
             secure: true,   
-            sameSite: 'None',
-            domain: 'https://spotify-nine-tawny.vercel.app'        
+            sameSite: 'None'        
         }
 
         return res
