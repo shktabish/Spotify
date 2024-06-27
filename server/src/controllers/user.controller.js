@@ -103,8 +103,10 @@ const loginUser = async (req, res) => {
         const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
 
         const options = {
-            httpOnly: false,
-            secure: true
+            httpOnly: true, 
+            secure: true,   
+            sameSite: 'None',
+            domain: 'https://spotify-nine-tawny.vercel.app/'        
         }
 
         return res
@@ -138,8 +140,10 @@ const logoutUser = async (req, res) => {
         )
 
         const options = {
-            httpOnly: false,
-            secure: true
+            httpOnly: true, 
+            secure: true,   
+            sameSite: 'None',
+            domain: 'https://spotify-nine-tawny.vercel.app/'        
         }
 
         return res
