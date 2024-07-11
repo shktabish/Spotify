@@ -7,8 +7,6 @@ const LoginPage = lazy(() => import("./pages/LoginPage"));
 const SignupPage = lazy(() => import("./pages/SignupPage"));
 
 export default function App() {
-
-
   return (
     <UserProvider>
       <BrowserRouter>

@@ -6,8 +6,9 @@ import { IoMdCloudUpload } from "react-icons/io"
 import { useUser } from "../Contexts/UserContext"
 import { toast } from "sonner"
 import { IoMdClose } from "react-icons/io"
+import { FaUserFriends } from "react-icons/fa"
 
-const Sidebar = ({ setIsUploadOpen,setShowSidebar, showSidebar }) => {
+const Sidebar = ({ setIsUploadOpen , setShowSidebar, showSidebar, setIsListenWithFriendsOpen }) => {
   const { user } = useUser()
   
   const handleClick = () => {
@@ -17,6 +18,15 @@ const Sidebar = ({ setIsUploadOpen,setShowSidebar, showSidebar }) => {
     }
     setShowSidebar(false)
     setIsUploadOpen(true)
+  }
+
+  const handleListenWithFriends = () => {
+    if(!user) {
+      toast.error('Please login to listen with friends')
+      return
+    }
+    setShowSidebar(false)
+    setIsListenWithFriendsOpen(true)
   }
 
   return (
@@ -33,6 +43,10 @@ const Sidebar = ({ setIsUploadOpen,setShowSidebar, showSidebar }) => {
         <div onClick={handleClick} className="flex items-center cursor-pointer">
           <IoMdCloudUpload className="fill-[#b3b3b3] text-3xl mr-4 ml-2" />
           <span className="text-[#b3b3b3] text-l font-semibold">Upload Songs</span>
+        </div>
+        <div onClick={handleListenWithFriends} className="flex items-center cursor-pointer">
+          <FaUserFriends className="fill-[#b3b3b3] text-3xl mr-4 ml-2" />
+          <span className="text-[#b3b3b3] text-l font-semibold">Listen with Friends</span>
         </div>
       </div>
       <div className="w-full bg-[#121212] grow py-2 px-4 rounded-xl flex flex-col gap-4">
