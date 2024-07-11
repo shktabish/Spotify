@@ -14,17 +14,20 @@ const MainPage = () => {
     const [showSidebar, setShowSidebar] = useState(false)
     const [songIndex, setSongIndex] = useState(null)
     const audioRef = useRef(null)
+    const [roomID, setRoomID] = useState(() => {
+      return localStorage.getItem("roomID") || ''
+    })
 
   return (
     <div className="flex bg-black w-full min-h-screen p-2">
       <Sidebar setIsUploadOpen={setIsUploadOpen} setShowSidebar={setShowSidebar} showSidebar={showSidebar} setIsListenWithFriendsOpen={setIsListenWithFriendsOpen} />
       <div className={`${showSidebar ? "max-sm:hidden" : ""} bg-gradient-to-b from-[#1e1e1e] to-black w-full sm:w-[calc(100%-256px)] sm:ml-2 rounded-xl`}>
         <Navbar setShowSidebar={setShowSidebar}/>
-        <MainSection setSongPlaying={setSongPlaying} songs={songs} setSongs={setSongs} setSongIndex={setSongIndex}/>
+        <MainSection roomID={roomID} setSongPlaying={setSongPlaying} songs={songs} setSongs={setSongs} setSongIndex={setSongIndex}/>
       </div> 
-      {songPlaying && <AudioPlayer songList={songs} song={songPlaying} setSong={setSongPlaying} audioRef={audioRef} songIndex={songIndex} setSongIndex={setSongIndex} />}
+      {songPlaying && <AudioPlayer roomID={roomID} songList={songs} song={songPlaying} setSong={setSongPlaying} audioRef={audioRef} songIndex={songIndex} setSongIndex={setSongIndex} />}
       <Upload isUploadOpen={isUploadOpen} setIsUploadOpen={setIsUploadOpen} setSongs={setSongs}/>
-      <ListenWithFriends isModalOpen={isListenWithFriendsOpen} setIsModalOpen={setIsListenWithFriendsOpen} />
+      <ListenWithFriends roomID={roomID} setRoomID={setRoomID} isModalOpen={isListenWithFriendsOpen} setIsModalOpen={setIsListenWithFriendsOpen} />
     </div>
   )
 }

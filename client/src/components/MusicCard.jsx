@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { IoPlaySharp } from "react-icons/io5"
+import socket from "../utils/socket";
 
-const MusicCard = ({ song, setSongPlaying, index, setSongIndex }) => {
+const MusicCard = ({ song, setSongPlaying, index, setSongIndex, roomID }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
     setSongPlaying(song)
     setSongIndex(index)
+    socket.emit('change-song', { roomID, songIndex: index })
   }
 
   return (
