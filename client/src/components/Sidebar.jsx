@@ -21,10 +21,10 @@ const Sidebar = ({ setIsUploadOpen , setShowSidebar, showSidebar, setIsListenWit
   }
 
   const handleListenWithFriends = () => {
-    if(!user) {
-      toast.error('Please login to listen with friends')
-      return
-    }
+    // if(!user) {
+    //   toast.error('Please login to listen with friends')
+    //   return
+    // }
     setShowSidebar(false)
     setIsListenWithFriendsOpen(true)
   }
