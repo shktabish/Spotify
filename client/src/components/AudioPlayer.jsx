@@ -62,17 +62,10 @@ const AudioPlayer = ({ song, audioRef, songIndex, setSongIndex, songList, setSon
           audioRef.current.currentTime = time
         })
 
-        socket.on('change-song', (index) => {
-          setSong(songList[index])
-          setSongIndex(index)
-          playAudio()
-        })
-
         return () => {
           socket.off('play')
           socket.off('pause')
           socket.off('seek')
-          socket.off('change-song')
         }
     }, [])
 

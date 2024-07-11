@@ -5,6 +5,7 @@ import Upload from "../components/modals/Upload"
 import MainSection from './../components/MainSection';
 import AudioPlayer from './../components/AudioPlayer';
 import ListenWithFriends from './../components/modals/ListenWithFriends';
+import socket from "../utils/socket";
 
 const MainPage = () => {
     const [songPlaying, setSongPlaying] = useState(null)
@@ -17,6 +18,17 @@ const MainPage = () => {
     const [roomID, setRoomID] = useState(() => {
       return localStorage.getItem("roomID") || ''
     })
+
+    useEffect(() => {
+      socket.on('change-song', (index) => {
+        setSongPlaying(songs[index])
+        setSongIndex(index)
+      })
+
+      return () => {
+        socket.off('change-song')
+      }
+    }, [songs, setSongPlaying, setSongIndex])
 
   return (
     <div className="flex bg-black w-full min-h-screen p-2">
